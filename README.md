@@ -1,18 +1,21 @@
-# Support & TAM AI Tooling 
-Production-grade AI tooling for Technical Support and TAM teams, built on
-the provided mock dataset (500 tickets, 50 accounts, product knowledge base).
+# Support & TAM AI Toolkit
+
+AI-powered tooling for Technical Support and TAM teams: an intelligent
+ticket triage agent, a TAM account health summariser, and an evaluation
+harness to keep both honest — built on Google Gemini's free tier with
+zero paid infrastructure.
 
 ## What's here
 
-| Task | Location |
-|------|----------|
-| 1. Ticket triage agent | `src/triage/agent.py` + `POST /triage` in `src/api.py` | 
-| 2. TAM account brief | `src/account_brief/summarizer.py` + `GET /account-brief/{id}` | 
-| 3. Eval harness | `src/eval/harness.py` → `eval_report.md` / `eval_report.json` | 
-| 4. Design note | [`DESIGN_NOTE.md`](./DESIGN_NOTE.md) | 
-| Bonus: Streamlit UI | `app_streamlit.py` | 
-| Bonus: CI eval on push | `.github/workflows/eval.yml` | 
-| Bonus: Prompt versioning | `prompts/*.py` (each has a `VERSION` + changelog docstring) | 
+| Component | Location |
+|-----------|----------|
+| Ticket triage agent | `src/triage/agent.py` + `POST /triage` in `src/api.py` |
+| TAM account brief | `src/account_brief/summarizer.py` + `GET /account-brief/{id}` |
+| Eval harness | `src/eval/harness.py` → `eval_report.md` / `eval_report.json` |
+| Design note | [`DESIGN_NOTE.md`](./DESIGN_NOTE.md) |
+| Streamlit UI | `app_streamlit.py` |
+| CI eval on push | `.github/workflows/eval.yml` |
+| Prompt versioning | `prompts/*.py` (each has a `VERSION` + changelog docstring) |
 
 ## Setup
 
@@ -20,7 +23,7 @@ Requires Python 3.11+.
 
 ```bash
 git clone <this-repo-url>
-cd <repo-name>
+cd support-tam-ai-toolkit
 python3 -m venv venv
 source venv/bin/activate          # Windows: venv\Scripts\activate
 pip install -r requirements.txt
@@ -29,12 +32,12 @@ cp .env.example .env
 # Edit .env and add a free Gemini API key from https://aistudio.google.com/apikey
 ```
 
-All model calls use Google Gemini's free tier (`gemini-2.0-flash`). No
-other paid service is required. Retrieval (Task 1's KB lookup) runs
+All model calls use Google Gemini's free tier (`gemini-3.5-flash-lite`).
+No other paid service is required. Retrieval (the KB lookup) runs
 entirely locally via TF-IDF — no embedding API, no extra cost, no model
 download.
 
-## Sample run — Task 1 (triage)
+## Sample run — ticket triage
 
 As a Python function:
 ```bash
@@ -55,7 +58,7 @@ curl -X POST http://localhost:8000/triage \
 ```
 Interactive API docs at `http://localhost:8000/docs`.
 
-## Sample run — Task 2 (account brief)
+## Sample run — account brief
 
 ```bash
 python src/account_brief/summarizer.py
@@ -66,7 +69,7 @@ JSON (executive summary, quote-justified risk flags, talking points).
 
 Or via the API: `GET http://localhost:8000/account-brief/ACC-7397`
 
-## Sample run — Task 3 (eval harness)
+## Sample run — eval harness
 
 ```bash
 python src/eval/harness.py
@@ -75,46 +78,23 @@ Runs 6 triage test cases + 5 account-brief test cases (each set includes
 an adversarial case), scores them with rule-based checks + LLM-as-judge,
 and writes `eval_report.json` and `eval_report.md` to the repo root.
 
-## Bonus — Streamlit UI
+## Streamlit UI
 
 ```bash
 streamlit run app_streamlit.py
 ```
+A thin UI a non-technical TAM or support agent could actually use —
+paste a ticket in, or pick an account, and get a formatted result
+instead of raw JSON.
 
 ## A data-quality note worth knowing before you demo this
 
-The starter README says ticket `account_id`s "don't always" match an
-account record — in practice, **only 4 of the 50 accounts** have any
-ticket at all linked to them in this snapshot (`ACC-7397`, `ACC-1785`,
-`ACC-3336`, `ACC-5748`), each with exactly one ticket. This is handled
-gracefully throughout (`get_account_tickets` returns `[]`, the brief
-notes the data gap explicitly rather than fabricating history), but it's
-worth knowing going in so a demo account is picked deliberately rather
-than at random.
+Ticket `account_id`s don't always match an account record in this
+dataset — in practice, **only 4 of the 50 accounts** have any ticket at
+all linked to them in this snapshot (`ACC-7397`, `ACC-1785`, `ACC-3336`,
+`ACC-5748`), each with exactly one ticket. This is handled gracefully
+throughout (`get_account_tickets` returns `[]`, the brief notes the data
+gap explicitly rather than fabricating history), but it's worth knowing
+going in so a demo account is picked deliberately rather than at random.
 
 ## Project structure
-
-```
-├── data/                      # tickets.json, accounts.json
-├── knowledge_base/            # KB markdown docs (products, troubleshooting, billing, onboarding)
-├── prompts/                   # versioned prompts (triage_prompt.py, account_brief_prompt.py)
-├── src/
-│   ├── data_loader.py          # ticket<->account joins, handles missing links
-│   ├── retriever.py            # TF-IDF KB retrieval, chunked on `---` per DATA_SCHEMA.md
-│   ├── llm_client.py           # single Gemini call wrapper (structured, deterministic)
-│   ├── schemas.py               # Pydantic schemas for both tasks' structured output
-│   ├── api.py                   # FastAPI app (Task 1 + Task 2 endpoints)
-│   ├── triage/agent.py           # Task 1
-│   ├── account_brief/summarizer.py # Task 2
-│   └── eval/                     # Task 3 (test cases + harness)
-├── app_streamlit.py            # bonus UI
-├── DESIGN_NOTE.md              # Task 4
-├── eval_report.json/.md        # generated by running the harness
-└── .github/workflows/eval.yml  # bonus CI
-```
-
-## Design note
-
-See [`DESIGN_NOTE.md`](./DESIGN_NOTE.md) for failure modes, the
-latency/quality trade-off made in Task 2, data-sensitivity handling, and
-scaling considerations.
