@@ -1,19 +1,18 @@
-# Support & TAM AI Tooling — Internship Task Round Submission
-
+# Support & TAM AI Tooling 
 Production-grade AI tooling for Technical Support and TAM teams, built on
 the provided mock dataset (500 tickets, 50 accounts, product knowledge base).
 
 ## What's here
 
-| Task | Location | Marks |
-|------|----------|-------|
-| 1. Ticket triage agent | `src/triage/agent.py` + `POST /triage` in `src/api.py` | 30 |
-| 2. TAM account brief | `src/account_brief/summarizer.py` + `GET /account-brief/{id}` | 25 |
-| 3. Eval harness | `src/eval/harness.py` → `eval_report.md` / `eval_report.json` | 20 |
-| 4. Design note | [`DESIGN_NOTE.md`](./DESIGN_NOTE.md) | 15 |
-| Bonus: Streamlit UI | `app_streamlit.py` | +5 |
-| Bonus: CI eval on push | `.github/workflows/eval.yml` | +2 |
-| Bonus: Prompt versioning | `prompts/*.py` (each has a `VERSION` + changelog docstring) | +2 |
+| Task | Location |
+|------|----------|
+| 1. Ticket triage agent | `src/triage/agent.py` + `POST /triage` in `src/api.py` | 
+| 2. TAM account brief | `src/account_brief/summarizer.py` + `GET /account-brief/{id}` | 
+| 3. Eval harness | `src/eval/harness.py` → `eval_report.md` / `eval_report.json` | 
+| 4. Design note | [`DESIGN_NOTE.md`](./DESIGN_NOTE.md) | 
+| Bonus: Streamlit UI | `app_streamlit.py` | 
+| Bonus: CI eval on push | `.github/workflows/eval.yml` | 
+| Bonus: Prompt versioning | `prompts/*.py` (each has a `VERSION` + changelog docstring) | 
 
 ## Setup
 
