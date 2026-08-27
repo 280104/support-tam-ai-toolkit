@@ -1,0 +1,236 @@
+{
+  "generated_at": "2026-08-27T06:52:19.244423+00:00",
+  "task1_triage": {
+    "summary": {
+      "total": 6,
+      "passed": 5,
+      "failed": 1,
+      "pass_rate": 0.833,
+      "avg_quality_score": 0.833
+    },
+    "cases": [
+      {
+        "id": "TC-01",
+        "adversarial": false,
+        "passed": true,
+        "quality_score": 1.0,
+        "rule_score": 1.0,
+        "rule_failures": [],
+        "judge_score": null,
+        "judge_rationale": "judge call failed: LLM output didn't match the expected schema: 1 validation error for JudgeVerdict\nrationale\n  Field required [type=missing, input_value={'score': 1.0}, input_type=dict]\n    For further information visit https://errors.pydantic.dev/2.9/v/missing\nRaw parsed JSON was: {\n  \"score\": 1.0\n}",
+        "output": {
+          "ticket_id": "TKT-EVAL-01",
+          "product_area": "DataBridge Pro",
+          "category": "Bug",
+          "urgency": "P1",
+          "urgency_reasoning": "The issue affects a Production environment with 47 users and involves a critical pipeline failure with connection timeouts that has persisted since yesterday.",
+          "kb_match": {
+            "matched": true,
+            "doc_path": "products\\databridge-pro.md",
+            "heading_trail": "DataBridge Pro \u2014 Product Reference > Core Modules > API",
+            "relevance_score": 0.1743
+          },
+          "recommended_responder_team": "Tier-1 Support",
+          "draft_first_response": "Hello, thank you for reaching out to support. We understand that your DataBridge Pro pipeline is experiencing an ERR_CONNECTION_TIMEOUT in your Production environment impacting 47 users. According to our documentation on DataBridge Pro Core Modules, this error indicates the source is unreachable; please check your network rules and firewall allowlist. A support engineer is reviewing your case and will follow up shortly with next steps.",
+          "_prompt_version": "v1"
+        }
+      },
+      {
+        "id": "TC-02",
+        "adversarial": false,
+        "passed": false,
+        "quality_score": 0.0,
+        "rule_score": 0.0,
+        "rule_failures": [
+          "expected kb_match.matched=True, got False"
+        ],
+        "judge_score": null,
+        "judge_rationale": "judge call failed: LLM output didn't match the expected schema: 1 validation error for JudgeVerdict\nrationale\n  Field required [type=missing, input_value={'score': 1.0}, input_type=dict]\n    For further information visit https://errors.pydantic.dev/2.9/v/missing\nRaw parsed JSON was: {\n  \"score\": 1.0\n}",
+        "output": {
+          "ticket_id": "TKT-EVAL-02",
+          "product_area": "Authentication/SSO",
+          "category": "How-To",
+          "urgency": "P4",
+          "urgency_reasoning": "This is a general inquiry about how to configure SSO with no indication of downtime, data loss, or blocking a production environment.",
+          "kb_match": {
+            "matched": false,
+            "doc_path": null,
+            "heading_trail": null,
+            "relevance_score": null
+          },
+          "recommended_responder_team": "Tier-1 Support",
+          "draft_first_response": "Hello! Thank you for reaching out. To set up SAML SSO with Okta, please follow the steps outlined in our Authentication & SSO guide at troubleshooting/authentication-sso.md and check your settings under Settings \u2192 SSO. If you run into any specific errors during configuration, please let us know!",
+          "_prompt_version": "v1"
+        }
+      },
+      {
+        "id": "TC-03",
+        "adversarial": false,
+        "passed": true,
+        "quality_score": 1.0,
+        "rule_score": 1.0,
+        "rule_failures": [],
+        "judge_score": null,
+        "judge_rationale": "judge call failed: LLM output didn't match the expected schema: 1 validation error for JudgeVerdict\nrationale\n  Field required [type=missing, input_value={'score': 1.0}, input_type=dict]\n    For further information visit https://errors.pydantic.dev/2.9/v/missing\nRaw parsed JSON was: {\n  \"score\": 1.0\n}",
+        "output": {
+          "ticket_id": "TKT-EVAL-03",
+          "product_area": "Billing",
+          "category": "Billing",
+          "urgency": "P4",
+          "urgency_reasoning": "This is a billing inquiry with no direct impact on system availability, data loss, or active work disruption.",
+          "kb_match": {
+            "matched": true,
+            "doc_path": "billing\\billing-and-plans.md",
+            "heading_trail": "Billing & Plans \u2014 Reference Guide > How Seat Billing Works",
+            "relevance_score": 0.4309
+          },
+          "recommended_responder_team": "Billing Team",
+          "draft_first_response": "Hello, thank you for reaching out regarding your invoice. As noted in our billing guide, seats are counted for any account active at least once during the billing period, and deactivating a user does not immediately free a seat until the month closes. Please check Settings > Users > Export to verify your active user list. If a discrepancy still remains, please let us know with the exported list attached, and our billing team will review it.",
+          "_prompt_version": "v1"
+        }
+      },
+      {
+        "id": "TC-04",
+        "adversarial": false,
+        "passed": true,
+        "quality_score": 1.0,
+        "rule_score": 1.0,
+        "rule_failures": [],
+        "judge_score": null,
+        "judge_rationale": "judge call failed: LLM output didn't match the expected schema: 1 validation error for JudgeVerdict\nrationale\n  Field required [type=missing, input_value={'score': 1.0}, input_type=dict]\n    For further information visit https://errors.pydantic.dev/2.9/v/missing\nRaw parsed JSON was: {\n  \"score\": 1.0\n}",
+        "output": {
+          "ticket_id": "TKT-EVAL-04",
+          "product_area": "SecureVault",
+          "category": "Data Loss",
+          "urgency": "P1",
+          "urgency_reasoning": "This is classified as P1 because it is a production-level total outage impacting deployments and involves potential data loss across enterprise secrets.",
+          "kb_match": {
+            "matched": false,
+            "doc_path": null,
+            "heading_trail": null,
+            "relevance_score": null
+          },
+          "recommended_responder_team": "Security/SecureVault Team",
+          "draft_first_response": "Hello, thank you for reaching out to us. I understand that all secrets in your SecureVault production vault are showing as empty, causing a total outage for your deployments. Given the potential data loss, our Security/SecureVault Team is treating this as a high-priority incident and is investigating the issue. We will update you as soon as we have more information and next steps.",
+          "_prompt_version": "v1"
+        }
+      },
+      {
+        "id": "TC-05-adversarial",
+        "adversarial": true,
+        "passed": true,
+        "quality_score": 1.0,
+        "rule_score": 1.0,
+        "rule_failures": [],
+        "judge_score": null,
+        "judge_rationale": "judge call failed: LLM output didn't match the expected schema: 1 validation error for JudgeVerdict\nrationale\n  Field required [type=missing, input_value={'score': 1.0}, input_type=dict]\n    For further information visit https://errors.pydantic.dev/2.9/v/missing\nRaw parsed JSON was: {\n  \"score\": 1.0\n}",
+        "output": {
+          "ticket_id": "TKT-EVAL-05",
+          "product_area": "General",
+          "category": "Bug",
+          "urgency": "P3",
+          "urgency_reasoning": "The ticket lacks specific details, environment impact, or error messages, but indicates a repeating moderate disruption with no stated workaround.",
+          "kb_match": {
+            "matched": false,
+            "doc_path": null,
+            "heading_trail": null,
+            "relevance_score": null
+          },
+          "recommended_responder_team": "Tier-1 Support",
+          "draft_first_response": "Hello, thank you for reaching out to support. We have received your request regarding the issue you are experiencing. Could you please provide more details or error messages so we can better assist you? Our team will review this and follow up with next steps shortly.",
+          "_prompt_version": "v1"
+        }
+      },
+      {
+        "id": "TC-06-adversarial",
+        "adversarial": true,
+        "passed": true,
+        "quality_score": 1.0,
+        "rule_score": 1.0,
+        "rule_failures": [],
+        "judge_score": null,
+        "judge_rationale": "judge call failed: LLM output didn't match the expected schema: 1 validation error for JudgeVerdict\nrationale\n  Field required [type=missing, input_value={'score': 1.0}, input_type=dict]\n    For further information visit https://errors.pydantic.dev/2.9/v/missing\nRaw parsed JSON was: {\n  \"score\": 1.0\n}",
+        "output": {
+          "ticket_id": "TKT-EVAL-06",
+          "product_area": "AnalyticsHub",
+          "category": "Bug",
+          "urgency": "P4",
+          "urgency_reasoning": "The issue is purely cosmetic, does not affect data, and occurs in a non-disruptive way during auto-refresh as noted by the customer.",
+          "kb_match": {
+            "matched": false,
+            "doc_path": null,
+            "heading_trail": null,
+            "relevance_score": null
+          },
+          "recommended_responder_team": "Tier-1 Support",
+          "draft_first_response": "Hi there! Thanks for reaching out and letting us know about the flickering dashboard widget colors during auto-refresh. Since this is cosmetic only and does not impact your data, we have logged it as a low-priority UI issue. We will investigate this in a future update. Let us know if you run into anything else!",
+          "_prompt_version": "v1"
+        }
+      }
+    ]
+  },
+  "task2_account_brief": {
+    "summary": {
+      "total": 5,
+      "passed": 2,
+      "failed": 3,
+      "pass_rate": 0.4,
+      "avg_quality_score": 0.4
+    },
+    "cases": [
+      {
+        "id": "BC-01",
+        "adversarial": false,
+        "passed": false,
+        "quality_score": 0.0,
+        "error": "LLM output didn't match the expected schema: 3 validation errors for RiskFlag\nsignal\n  Field required [type=missing, input_value={'ticket_id': None}, input_type=dict]\n    For further information visit https://errors.pydantic.dev/2.9/v/missing\njustification_quote\n  Field required [type=missing, input_value={'ticket_id': None}, input_type=dict]\n    For further information visit https://errors.pydantic.dev/2.9/v/missing\nseverity\n  Field required [type=missing, input_value={'ticket_id': None}, input_type=dict]\n    For further information visit https://errors.pydantic.dev/2.9/v/missing\nRaw parsed JSON was: [\n  {\n    \"ticket_id\": null\n  }\n]"
+      },
+      {
+        "id": "BC-02",
+        "adversarial": false,
+        "passed": false,
+        "quality_score": 0.0,
+        "error": "LLM output didn't match the expected schema: 3 validation errors for RiskFlag\nsignal\n  Field required [type=missing, input_value={'ticket_id': 'TKT-10197...rity\": \"high\" \\xa0 } ]'}, input_type=dict]\n    For further information visit https://errors.pydantic.dev/2.9/v/missing\njustification_quote\n  Field required [type=missing, input_value={'ticket_id': 'TKT-10197...rity\": \"high\" \\xa0 } ]'}, input_type=dict]\n    For further information visit https://errors.pydantic.dev/2.9/v/missing\nseverity\n  Field required [type=missing, input_value={'ticket_id': 'TKT-10197...rity\": \"high\" \\xa0 } ]'}, input_type=dict]\n    For further information visit https://errors.pydantic.dev/2.9/v/missing\nRaw parsed JSON was: [\n  {\n    \"ticket_id\": \"TKT-10197\\u201c, \\u00a0 \\u00a0 \\\"signal\\\": \\\"Slow dashboard loading times during critical business event\\\", \\u00a0 \\u00a0 \\\"justification_quote\\\": \\\"Our Key Management dashboard in SecureVault is now taking over 76 seconds to load. This was not an issue 2 weeks ago. We have a board presentation on Wednesday and need this resolved.\\\", \\u00a0 \\u00a0 \\\"severity\\\": \\\"high\\\" \\u00a0 } ]\"\n  }\n]"
+      },
+      {
+        "id": "BC-03",
+        "adversarial": false,
+        "passed": true,
+        "quality_score": 1.0,
+        "rule_score": 1.0,
+        "rule_failures": [],
+        "judge_score": null,
+        "judge_rationale": "judge call failed: LLM output didn't match the expected schema: 1 validation error for JudgeVerdict\nrationale\n  Field required [type=missing, input_value={'score': 1.0}, input_type=dict]\n    For further information visit https://errors.pydantic.dev/2.9/v/missing\nRaw parsed JSON was: {\n  \"score\": 1.0\n}",
+        "output": {
+          "account_id": "ACC-3033",
+          "company": "Polaris Group",
+          "executive_summary": "Polaris Group is a Starter tier customer in the Energy industry with $120,000 in ARR and an increasing usage trend. They currently have 925 active seats out of 1,049 licensed seats and have been a customer since July 2024. Their upcoming renewal is scheduled for June 30, 2026, with the last QBR conducted on December 15, 2025. Notably, there are no active P1 tickets and health status is marked as healthy, though no recent ticket data was available for deep-dive analysis.",
+          "risks_and_flags": [],
+          "recommended_talking_points": [
+            "Discuss strategies to drive activation for the remaining 124 licensed seats.",
+            "Review value realization from active DataBridge Pro integrations including Google Workspace and Jira.",
+            "Confirm plans and objectives ahead of the June 2026 renewal date."
+          ],
+          "data_completeness_note": "No tickets found for this account in the last 90 days (or in the dataset at all). This brief is based on account summary data and escalation notes only.",
+          "_prompt_version": "v1"
+        }
+      },
+      {
+        "id": "BC-04",
+        "adversarial": false,
+        "passed": false,
+        "quality_score": 0.0,
+        "error": "LLM output didn't match the expected schema: 3 validation errors for RiskFlag\nsignal\n  Field required [type=missing, input_value={'ticket_id': 'TKT-10112'}, input_type=dict]\n    For further information visit https://errors.pydantic.dev/2.9/v/missing\njustification_quote\n  Field required [type=missing, input_value={'ticket_id': 'TKT-10112'}, input_type=dict]\n    For further information visit https://errors.pydantic.dev/2.9/v/missing\nseverity\n  Field required [type=missing, input_value={'ticket_id': 'TKT-10112'}, input_type=dict]\n    For further information visit https://errors.pydantic.dev/2.9/v/missing\nRaw parsed JSON was: [\n  {\n    \"ticket_id\": \"TKT-10112\"\n  },\n  {\n    \"signal\": \"Data Integrity Error\"\n  },\n  {\n    \"justification_quote\": \"Error message: 'CHECKSUM_MISMATCH: data integrity error on chunk 47'\"\n  },\n  {\n    \"severity\": \"high\"\n  }\n]"
+      },
+      {
+        "id": "BC-05-adversarial",
+        "adversarial": true,
+        "passed": true,
+        "quality_score": 1.0,
+        "rule_score": 1.0,
+        "rule_failures": [],
+        "note": "correctly raised: No account found for account_id='ACC-99999-DOES-NOT-EXIST'"
+      }
+    ]
+  }
+}
